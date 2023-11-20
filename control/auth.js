@@ -1,3 +1,4 @@
+require("dotenv").config();
 const User = require("../model/user");
 const jwt = require("jsonwebtoken");
 
@@ -35,9 +36,7 @@ exports.postlogin = async (req, res) => {
         return res.status(400).json({ errorMessage: "패스워드가 일치하지 않습니다." });
     }
 
-    const SECRET_KEY = process.env.DB_KEY;
-
-    const accessToken = jwt.sign({ Id: finduser.userId }, SECRET_KEY, { expiresIn: "12h" });
+    const accessToken = jwt.sign({ Id: finduser.userId }, process.env.DB_KEY, { expiresIn: "12h" });
     return res.status(200).json({ accessToken: "Bearer " + accessToken, message: "로그인 성공!" });
 };
 
@@ -53,7 +52,7 @@ exports.okInfo = async (req, res) => {
     }
 
     try {
-        const { Id } = jwt.verify(authToken, "wow");
+        const { Id } = jwt.verify(authToken, process.env.DB_KEY);
         res.locals.user = Id;
         const myInfo = await User.findOne({ where: { userId: Id } });
         res.send({ Email: myInfo.Email, Name: myInfo.Name });

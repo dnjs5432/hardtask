@@ -1,6 +1,7 @@
+require("dotenv").config();
 const Sequelize = require("sequelize");
 
-const sequelize = new Sequelize("sys", "root", "wldkskfn3", {
+const sequelize = new Sequelize("task", "root", process.env.DB_PASSWORD, {
     host: "localhost",
     dialect: "mysql",
 });

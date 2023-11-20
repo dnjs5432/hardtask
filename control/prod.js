@@ -22,6 +22,10 @@ exports.productModi = async (req, res) => {
     const { Id } = req.params;
     const { Title, Content, Status } = req.body;
     try {
+        const validStatus = ["FOR_SALE", "SOLD_OUT"];
+        if (!validStatus.includes(Status)) {
+            return res.status(400).json({ errorMessage: "유효하지 않은 상태 값입니다." });
+        }
         const userId = res.locals.user.Id;
         const product = await Product.findOne({ where: { productId: Id, userId } });
         if (!product) {
