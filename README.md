@@ -1,5 +1,7 @@
 https://docs.google.com/spreadsheets/d/1vTPzlaZXHIFFvK0vBnbOyTFmaTGYoUMdOy2ARuC2yEg/edit?usp=sharing
 
+![Uploading taskkk.png…]()
+
 1. **암호화 방식**
     - 단방향 암호화에 해당한다.
     - 저장할 때 안전하여 보안을 강화시킬 수 있다.
